@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:http/http.dart' as http;
 
 import 'package:practical_growth_route_network_cli/core/types/no_params.dart';
@@ -22,13 +21,14 @@ final class GetProductsUseCaseConsoleRun {
     final products = await getProductsUseCase.call(NoParams());
 
     products.fold(
-      (l) => log('Error: $l'),
+      (l) => print('Error: $l'),
       (r) => _printToConsole(r),
     );
   }
 
   static void _printToConsole(List<ProductModel> collection) {
     final buffer = StringBuffer('Get products use case console run success response: \n');
+    buffer.writeln(" ");
     for (var element in collection) {
       buffer.writeln("id: ${element.id}");
       buffer.writeln("title: ${element.title}");
@@ -40,6 +40,6 @@ final class GetProductsUseCaseConsoleRun {
       buffer.writeln("rating [count]: ${element.rating?.count}");
       buffer.writeln(" ");
     }
-    log(buffer.toString());
+    print(buffer.toString());
   }
 }

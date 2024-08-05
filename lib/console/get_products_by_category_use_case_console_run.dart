@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:http/http.dart' as http;
+
 import 'package:practical_growth_route_network_cli/data/data_sources/product_data_source.dart';
 import 'package:practical_growth_route_network_cli/data/models/product_model.dart';
 import 'package:practical_growth_route_network_cli/data/repositories/product_repository_impl.dart';
@@ -22,7 +22,7 @@ final class GetProductsByCategoryUseCaseConsoleRun {
     final products = await getProductsByCategoryUseCase.call(_category);
 
     products.fold(
-      (l) => log('Error: $l'),
+      (l) => print('Error: $l'),
       (r) => _printToConsole(r),
     );
   }
@@ -44,6 +44,6 @@ final class GetProductsByCategoryUseCaseConsoleRun {
       buffer.writeln("rating [count]: ${element.rating?.count}");
       buffer.writeln(" ");
     }
-    log(buffer.toString());
+    print(buffer.toString());
   }
 }
