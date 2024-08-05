@@ -16,12 +16,42 @@ class ProductRepositoryImpl implements ProductRepository {
   });
 
   /// Fetches a list of products from the data source.
-  /// 
+  ///
   /// Returns a Future that resolves to either a [Failure] or a List of [ProductModel].
   @override
   Future<Either<Failure, List<ProductModel>>> getProducts() async {
     try {
       final products = await productDataSource.getProducts();
+      return Right(products);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
+
+  /// Fetches a list of product categories from the data source.
+  ///
+  /// Returns a Future that resolves to either a [Failure] or a List of [String].
+  @override
+  Future<Either<Failure, List<String>>> getCategories() async {
+    try {
+      final categories = await productDataSource.getCategories();
+      return Right(categories);
+    } on Failure catch (e) {
+      return Left(e);
+    }
+  }
+
+  /// Fetches a list of products by category from the data source.
+  ///
+  /// Takes an required [category] parameter to filter the products.
+  /// Returns a Future that resolves to either a [Failure] or a List of [ProductModel].
+  @override
+  Future<Either<Failure, List<ProductModel>>> getProductsByCategory({
+    required String category,
+  }) async {
+    try {
+      final products =
+          await productDataSource.getProductsByCategory(category: category);
       return Right(products);
     } on Failure catch (e) {
       return Left(e);
