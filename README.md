@@ -1,6 +1,7 @@
 # Practical growth route network cli
 
-A simple Flutter application.
+A sample command-line application with an entrypoint in `bin/`, library code
+in `lib/`.
 
 ## 📝 Requirements
 
